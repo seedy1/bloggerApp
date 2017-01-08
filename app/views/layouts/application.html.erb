@@ -25,6 +25,7 @@
           <ul class="nav navbar-nav">
             <li class="active"> <%=link_to "Home", root_path %> </li>
             <% if current_user%>
+            <li>see only my post</li>
             <li><%=link_to "New Post", new_post_path %></li>
             <% end%>
 

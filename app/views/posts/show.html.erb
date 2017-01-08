@@ -16,6 +16,17 @@
   <strong>Body:</strong>
   <%= @post.body %>
 </p>
+
+<h3>COMMENTS:- </h3>
+
+<%= render @post.comments %>
+
+
+<h3>make a comment</h3>
+
+<%= render 'comments/form' %>
+
+
 <% if current_user%>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
