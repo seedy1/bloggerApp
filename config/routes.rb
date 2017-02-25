@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'visitor/show'
 
+  get 'visitor/about'
+
   devise_for :users
   resources :posts do
     resources :comments

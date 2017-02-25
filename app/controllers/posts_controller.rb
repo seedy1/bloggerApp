@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, except:[:index, :show]
   before_action :authenticate_user!
 
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order("created_at Desc")
+    @posts = current_user.posts.all.order("created_at Desc")
   end
 
   # GET /posts/1
@@ -75,4 +74,16 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :description, :body, :image)
     end
+
+
+    def right_owner
+        if current_user != Post.find(params[:id]).user
+          redirect_to new_user_session_path
+        end
+    end
+
+
+
+
+
 end
