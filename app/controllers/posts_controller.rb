@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
+  #before_action :right_owner
 
 
   # GET /posts
@@ -12,6 +13,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    # if current_user != Post.find(params[:id]).user
+    #     redirect_to new_user_session_path
+    # end
   end
 
   # GET /posts/new
@@ -21,6 +25,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if current_user != Post.find(params[:id]).user
+        redirect_to new_user_session_path
+    end
   end
 
   # POST /posts
@@ -42,15 +49,15 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @post.update(post_params)
+          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   # DELETE /posts/1
@@ -73,13 +80,6 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :description, :body, :image)
-    end
-
-
-    def right_owner
-        if current_user != Post.find(params[:id]).user
-          redirect_to new_user_session_path
-        end
     end
 
 

@@ -1,6 +1,6 @@
 class VisitorController < ApplicationController
   def index
-    @posts = Post.all.order("created_at Desc")
+    @posts = Post.all.order("created_at Desc LIMIT 3")
   end
 
   def show
@@ -8,4 +8,11 @@ class VisitorController < ApplicationController
 
   def about
   end
+
+  def allPost
+    @posts = Post.all.order("created_at Desc")
+
+  end
+
+
 end

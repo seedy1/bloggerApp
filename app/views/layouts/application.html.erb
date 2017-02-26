@@ -25,8 +25,11 @@
           <ul class="nav navbar-nav">
             <% if current_user%>
             <li><%=link_to "New Post", new_post_path %></li>
+            <li class="active"> <%=link_to "Home", root_path %> </li>
+
             <% else %>
             <li class="active"> <%=link_to "Home", root_path %> </li>
+            <li class="active"> <%=link_to "All Post", visitor_allPost_path %> </li>
             <li class="active"> <%=link_to "About", visitor_about_path %> </li>
 
             <% end%>
