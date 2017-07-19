@@ -2,13 +2,16 @@
 <h2>all post</h2>
 
 <h1>Posts</h1>
+<!-- use slice something -->
 
-
-    <% @posts.each do |post| %>
-        <h2><%= post.title %></h2>
-        <%= link_to "View Post", post_path(post), class: "btn btn-default" %>
-
-    <% end %>
-
-
+<% @posts.each_slice(3) do |slice| %>
+	<div class="row">
+		   <% slice.each do |post| %>
+		    	<div class="col-md-3 col-sm-3 col-lg postBlock">
+		        <h2><%= post.title %></h2>
+		     <%= link_to "View Post", post_path(post), class: "btn btn-default" %>
+			</div>
+		    <% end %>
+	</div>
+<% end %>
 <br>

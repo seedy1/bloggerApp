@@ -1,13 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<jumbotrom>Posts</jumbotrom>
+<header>
+  <div class="container-fluid hh">
+      <h1>dgwhetjythg</h1>
+      <p>somehing inspiring</p>
+      <p>somehing inspiring</p>
+      <p>somehing inspiring</p>
+      <p>somehing inspiring</p>
+      <p>somehing inspiring</p>
+      <p>somehing inspiring</p>
+  </div>
+</header>
 
 
-    <% @posts.each do |post| %>
-        <h2><%= post.title %></h2>
-        <%= link_to "View Post", post_path(post), class: "btn btn-default" %>
+      <div class="row" >
 
-    <% end %>
+        <% @posts.each do |post| %>
+
+          <div class="col-md-3 col-sm-3 col-lg postBlock">
+              <h2><%= post.title %></h2>
+              <%= link_to "View Post", post_path(post), class: "btn btn-default" %>
+
+          </div>
+
+            <% end %>
+      </div>
 
 
 <br>

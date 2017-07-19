@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="postTitle">
+  <p>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </p>
+</div>
+
 
 <p>Posted By <%= @post.user.email %> || <%= time_ago_in_words(@post.created_at) %> </p>
 
